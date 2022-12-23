@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/assets/css/style.css" />
+  </head>
+  <body>
+      <div class="buttons">
+        <button class ="button">Select</button>
+      </div>
+    <div class="middleDiv">
+    <div class="container">
+      <label class="containerLabel">Image 1</label>
+      <div class="imageContainer">
+        <input
+          id="magnitudeImageInput"
+          type="file"
+          accept="image/*"
+          style="display: none"
+        />
+        <img class="magnitudeImage">
+        <label for="magnitudeImageInput" class="magnitudeImageBtn">Upload</label>
+      </div>
+    </div>
+    <div class="container">
+      <div>
+        <label class="containerLabel">Image 2</label>
+      </div>
+      <div class="imageContainer">
+        <input
+          id="phaseImageInput"
+          type="file"
+          accept="image/*"
+          style="display: none"
+        />
+        <img class="phaseImage">
+        <label for="phaseImageInput" class="phaseImageBtn">Upload</label>
+      </div>
+
+    </div>
+    </div>
+    <script src="../static/assets/js/main.js"></script>
+  </body>
+</html>

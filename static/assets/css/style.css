@@ -1,0 +1,118 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: #60bfc1;
+
+}
+
+.middleDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 8%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 40%;
+}
+.containerLabel {
+  padding: 0px 8px;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #fdb7b9;
+  color: rgb(0, 0, 0);
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  padding: 2px;
+  border: 1px;
+  border-radius: 5%;
+  border-style: dashed;
+  border-color: rgba(0, 0, 0, 0.6);
+  background-color: rgb(255, 255, 255);
+}
+.magnitudeImageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  background-color: #fdb7b9; /*   rgb(138, 43, 226);*/
+  padding: 8px;
+  border-radius: 20px;
+}
+.magnitudeImageBtn:hover {
+  background-color: #c17779; /* rgba(138, 43, 226)*/
+}
+
+.magnitudeImage {
+  display: none;
+  height: 100%;
+  width: 100%;
+  border-radius: 5%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.phaseImageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  background-color: #fdb7b9; /*   rgb(138, 43, 226);*/
+  padding: 8px;
+  border-radius: 20px;
+}
+.phaseImageBtn:hover {
+  background-color: #c17779; /* rgba(138, 43, 226)*/
+}
+
+.phaseImage {
+  display: none;
+  height: 100%;
+  width: 100%;
+  border-radius: 5%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.button {
+  margin-top: 40px;
+  font-size: 14px;
+  padding: 20px 40px;
+  border-radius: 12px;
+  color: #000000;
+  font-style: bold;
+
+    
+}
+.button:hover{
+  background-color: #fdb7b9; /* Green */
+  /* color: white; */
+}
