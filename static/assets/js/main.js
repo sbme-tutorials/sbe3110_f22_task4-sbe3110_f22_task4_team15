@@ -32,11 +32,11 @@ phaseImageInput.addEventListener("change", function () {
   });
   reader.readAsDataURL(this.files[0]);
 });
-function addImage(data) {
-    let imageElement = new Image();
-    imageElement.src = data;
-    console.log(imageElement);
-    let imageContainer = document.getElementById('reconstructedImageOutput');
-    imageContainer.appendChild(imageElement);
-}
-addImage('');
+// function addImage(data) {
+//     let imageElement = new Image();
+//     imageElement.src = data;
+//     console.log(imageElement);
+//     let imageContainer = document.getElementById('reconstructedImageOutput');
+//     imageContainer.appendChild(imageElement);
+// }
+// addImage();
