@@ -5,7 +5,7 @@
 
 body {
   display: flex;
-  height: 100vh;
+  height: 90vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -20,15 +20,15 @@ body {
   align-items: center;
   height: 100%;
   width: 100%;
-  gap: 8%;
+  gap: 2%;
 }
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90%;
-  width: 40%;
+  height: 100%;
+  width: 30%;
 }
 .containerLabel {
   padding: 0px 8px;
@@ -102,17 +102,31 @@ body {
   background-repeat: no-repeat;
 }
 
-.button {
-  margin-top: 40px;
+.button1 {
+  margin-top: 30px;
+  /* margin-right: 100px; */
   font-size: 14px;
-  padding: 20px 40px;
+  padding: 15px 30px;
+  align-items: flex-start;
   border-radius: 12px;
   color: #000000;
-  font-style: bold;
-
-    
+  font-style: bold;  
 }
-.button:hover{
+.button2 {
+  margin-top: 30px;
+  /* margin-left: 300px; */
+  font-size: 14px;
+  padding: 15px 40px;
+  border-radius: 12px;
+  color: #000000;
+  font-style: bold;  
+}
+
+.button1:hover{
+  background-color: #fdb7b9; /* Green */
+  /* color: white; */
+}
+.button2:hover{
   background-color: #fdb7b9; /* Green */
   /* color: white; */
 }

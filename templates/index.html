@@ -8,40 +8,57 @@
     <link rel="stylesheet" href="../static/assets/css/style.css" />
   </head>
   <body>
-      <div class="buttons">
-        <button class ="button">Select</button>
-      </div>
-    <div class="middleDiv">
-    <div class="container">
-      <label class="containerLabel">Image 1</label>
-      <div class="imageContainer">
-        <input
-          id="magnitudeImageInput"
-          type="file"
-          accept="image/*"
-          style="display: none"
-        />
-        <img class="magnitudeImage">
-        <label for="magnitudeImageInput" class="magnitudeImageBtn">Upload</label>
-      </div>
+    <div class="buttons">
+      <button class ="button1">Select Magnitude</button>
+      <button class ="button2">Select Phase</button>
     </div>
-    <div class="container">
-      <div>
-        <label class="containerLabel">Image 2</label>
-      </div>
-      <div class="imageContainer">
-        <input
-          id="phaseImageInput"
-          type="file"
-          accept="image/*"
-          style="display: none"
-        />
-        <img class="phaseImage">
-        <label for="phaseImageInput" class="phaseImageBtn">Upload</label>
-      </div>
+  <div class="middleDiv">
+  <div class="container">
+    <label class="containerLabel">Image 1</label>
+    <div class="imageContainer">
+      <input
+        id="magnitudeImageInput"
+        type="file"
+        accept="image/*"
+        style="display: none"
+      />
+      <img class="magnitudeImage">
+      <label for="magnitudeImageInput" class="magnitudeImageBtn">Upload</label>
+    </div>
+  </div>
+  <div class="container">
+    <div>
+      <label class="containerLabel">Image 2</label>
+    </div>
+    <div class="imageContainer">
+      <input
+        id="phaseImageInput"
+        type="file"
+        accept="image/*"
+        style="display: none"
+      />
+      <img class="phaseImage">
+      <label for="phaseImageInput" class="phaseImageBtn">Upload</label>
+    </div>
 
+  </div>
+  <div class="container">
+    <div>
+      <label class="containerLabel">Reconstructed Image</label>
     </div>
+    <div class="imageContainer">
+      <input
+        id="reconstructedImageOutput"
+        type="file"
+        accept="image/*"
+        style="display: none"
+      />
+      <img class="reconstructedImage">
+      
     </div>
+
+  </div>
+  </div>
     <script src="../static/assets/js/main.js"></script>
   </body>
 </html>
