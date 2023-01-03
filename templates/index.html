@@ -10,38 +10,70 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <!-- <script        src="https://cdnjs.cloudflare.com/ajax/libs/konva/3.2.5/konva.min.js"></script> --> -->
     <meta charset="utf-8" />
-    <title>Konva </title>
+    <title>Image filter </title>
     <style>
-        body {
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background-color: #f0f0f0;
-        }
-  
-        #buttons {
-          position: absolute;
-          top: 5px;
-          left: 10px;
-        }
-      </style> 
-  </head>
-  <body>
-    <div id="container"></div>
-    <div id="buttons">
-        <button class ="button1" id="mag_btn">Select Magnitude</button>
-        <button class ="button2" id="phase_btn">Select Phase</button>
-        <button type ="submit" id="reconstruct"  onclick='Reconstruct()'>Reconstruct</button>
-        <div>
-            <input type="file" id="file_input" >
-          </div>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #ffffff;
+      }
 
-          <div>
-            <input type="file" id="file_input2">
-          </div>
+      #buttons {
+        position: absolute;
+        top: 10px;
+        left: 35%;
+        align-items: flex-start;
+        font-size: 30px;
+        
+      }
+      .inverse{
+        position: absolute;
+        top: 20px;
+        left: 55%;
+        align-items: flex-start;
+        font-size: 18px;
 
-  
-            
+      }
+      /* .inputs{
+        left: 10px !important
+      } */
+      .input1{
+        position: absolute;
+        left: 10px;
+        top: 5%;
+        width: 200px;
+      }
+
+      .input2{
+        position: absolute;
+        left: 10px;
+        top: 52%;
+        width: 200px;
+
+      }
+    </style> 
+</head>
+<body>
+  <div id="container"></div>
+  <div id="buttons">
+      <button class ="button1" id="mag_btn">Select Magnitude</button>
+      <button class ="button2" id="phase_btn">Select Phase</button>
+      <button type ="submit" id="reconstruct"  onclick='Reconstruct()'>Combine</button>
+      
+     
+  </div>
+
+  <div class="inverse">
+    <input type="checkbox" id="inverse" name="inverse" style="font-size:20px">
+          <label for="inverse"> Inverse selection</label><br>
+
+  </div>
+  <div class="input1">
+    <input type="file" id="file_input" >
+  </div>
+    <div class="input2">
+      <input type="file" id="file_input2">
     </div>
 
     <script>
@@ -59,23 +91,25 @@
         var phase_selected=false;
         var layer=new Konva.Layer();
 
-        var text = new Konva.Text({
-            x: 1200,
-            y: 10,
-        });
+        // var text = new Konva.Text({
+        //     x: 1200,
+        //     y: 10,
+        // });
 
-        var text2 = new Konva.Text({
-            x: 1200,
-            y: 70,
-        });
-        layer.add(text2);
-        layer.add(text);
+        // var text2 = new Konva.Text({
+        //     x: 1200,
+        //     y: 70,
+        // });
+        // layer.add(text2);
+        // layer.add(text);
         let  mag_rect = new Konva.Rect({});    
         let phase_rect=new Konva.Rect({});
         let isNowDrawing = false;
         let mag_rect_is_drawn=false;
         let phase_rect_is_drawn=false;
         stage.add(layer);
+
+        
 
 
 
@@ -90,12 +124,17 @@
         img.src = url;
         img.onload = function() {
 
+
         var First_image = new Konva.Image({
             image: img,
             x: 50,
-            y: 60,
-            width: 300,
-            height: 300,
+            y:97,
+            width: 250,
+            height: 250,
+            shadowColor: 'black',
+            shadowBlur: 10,
+            shadowOffset: { x: 10, y: 10 },
+            shadowOpacity: 0.4
         });
         First_image.cache();
         First_image.filters([Konva.Filters.Grayscale]);
@@ -155,21 +194,29 @@
           height: 300,
         });
         layer.add(First_image_phase);
+        mag_rect.moveToTop();
+        phase_rect.moveToTop();
+       var transforms1 = new Konva.Transformer({
+          nodes: [mag_rect],
+        });
+        transforms1.rotateEnabled(false);
+        var transforms2 = new Konva.Transformer({
+          nodes: [phase_rect],
+       
+      
+        }); 
+        transforms2.rotateEnabled(false);
+        layer.add(transforms2);
+        layer.add(transforms1);
+
        
       }; img2.src='data:image2/jpeg;base64,'+image2;
-
-
-
-         
+     
 				}
   
-        
-
-
-
 
 			});
-
+     
 		}
 
   
@@ -181,7 +228,7 @@
 //////////////SECOND IMAGE UPLOAING,POSTING TO FLASK,RECEIVING IMAGE FFT:
 
          $("#file_input2").change(function(e){
-
+      
         var URL = window.webkitURL || window.URL;
         var url = URL.createObjectURL(e.target.files[0]);
         var img = new Image();
@@ -189,13 +236,17 @@
 
 
         img.onload = function() {
-
+     
         var Second_image = new Konva.Image({
             image: img,
             x: 50,
-            y: 400,
-            width: 300,
-            height:300,
+            y: 436,
+            width: 250,
+            height:250,
+            shadowColor: 'black',
+            shadowBlur: 10,
+            shadowOffset: { x: 10, y: 10 },
+            shadowOpacity: 0.4
         });
         Second_image.cache();
         Second_image.filters([Konva.Filters.Grayscale]);
@@ -254,14 +305,28 @@
           height: 300,
         });
         layer.add(second_image_phase);
+        mag_rect.moveToTop();
+        phase_rect.moveToTop();
+       var transforms1 = new Konva.Transformer({
+          nodes: [mag_rect],
+        });
+        transforms1.rotateEnabled(false);
+        var transforms2 = new Konva.Transformer({
+          nodes: [phase_rect],
+       
+      
+        }); 
+        transforms2.rotateEnabled(false);
+        layer.add(transforms2);
+        layer.add(transforms1);
        
       }; img4.src='data:image2/jpeg;base64,'+image2;
 
+    
 
 				}
 
 			});
-
 		}
 
 
@@ -279,7 +344,6 @@
                   width: 0,
                   height: 0,
                   fill: "lightblue",
-                  stroke: "blue",
                   draggable: true,
                   opacity: 0.5,
     
@@ -295,10 +359,9 @@
                   y: stage.getPointerPosition().y,
                   width: 0,
                   height: 0,
-                  fill: "lightblue",
-                  stroke: "blue",
+                  fill: "red",
                   draggable: true,
-                  opacity: 0.5,
+                  opacity: 0.25,
     
                   });
                   layer.add(phase_rect).batchDraw() ;
@@ -352,14 +415,15 @@
         });
         transforms1.rotateEnabled(false);
         layer.add(transforms1);
-
-        mag_rect.on('dragmove', function () {
-            update_mag_Text();
-      });
-      mag_rect.on('transform', function () {
-        update_mag_Text();
-        console.log('transform');
-      });
+        
+        document.getElementById("mag_btn").disabled = true;
+      //   mag_rect.on('dragmove', function () {
+      //       update_mag_Text();
+      // });
+      // mag_rect.on('transform', function () {
+      //   update_mag_Text();
+      //   console.log('transform');
+      // });
    
     
         }
@@ -374,14 +438,14 @@
         }); 
         transforms2.rotateEnabled(false);
         layer.add(transforms2);
-
-        phase_rect.on('dragmove', function () {
-            update_phase_Text();
-      });
-        phase_rect.on('transform', function () {
-        update_phase_Text();
-        console.log('transform');
-      });
+        document.getElementById("phase_btn").disabled = true;
+      //   phase_rect.on('dragmove', function () {
+      //       update_phase_Text();
+      // });
+      //   phase_rect.on('transform', function () {
+      //   update_phase_Text();
+      //   console.log('transform');
+      // });
         
     }
           });
@@ -391,7 +455,6 @@
       function () {
              phase_selected=false;
              mag_selected=true;
-             mag_rect.moveToTop();
               var transforms3 = new Konva.Transformer({
           nodes: [mag_rect],
        
@@ -409,7 +472,6 @@
           function () {
               phase_selected=true;
               mag_selected=false;
-              phase_rect.moveToTop();
               var transforms4 = new Konva.Transformer({
           nodes: [phase_rect],
        
@@ -424,6 +486,13 @@
 
 
         function Reconstruct(){
+        
+          mode=0;
+         if  (document.getElementById('inverse').checked){
+          mode=1;
+         }
+           
+         
           var coordinates = {
         'Mag_rectangle_x: ' : mag_rect.x() ,
           'Mag_rectangle_y: ' : mag_rect.y() ,
@@ -432,7 +501,9 @@
           'Phase_rectangle_x: ' :phase_rect.x() ,
           'Phase_rectangle_y: ' : phase_rect.y() ,
           'Phase_rectangle_width: ' : Math.abs(phase_rect.scaleX()*phase_rect.width()) ,
-          'Phase_rectangle_height: ' : Math.abs(phase_rect.scaleY()* phase_rect.height()) }
+          'Phase_rectangle_height: ' : Math.abs(phase_rect.scaleY()* phase_rect.height()),
+          'mode:' : mode
+        }
 ;
 var coordinates = JSON.stringify(coordinates); 
 
@@ -450,7 +521,32 @@ var coordinates = JSON.stringify(coordinates);
 
           bytestring = data['status']
 					image = bytestring.split('\'')[1]
+          
 
+
+        var tooltip = new Konva.Label({
+        x: 1100,
+        y: 150,
+        opacity: 0.85,
+      });
+
+      tooltip.add(
+        new Konva.Tag({
+          fill: 'black',
+          lineJoin: 'round'
+     
+        })
+      );
+
+      tooltip.add(
+        new Konva.Text({
+          text: 'Mixed Image',
+          fontFamily: 'Calibri',
+          fontSize: 18,
+          padding: 5,
+          fill: 'white',
+        })
+      );  
           var img5 = new Image();
           img5.onload = function () {
           var reconstructed_img = new Konva.Image({
@@ -460,7 +556,24 @@ var coordinates = JSON.stringify(coordinates);
           width: 300,
           height: 300,
         });
+        layer.add(tooltip)
+        reconstructed_img.cache();
+        reconstructed_img.filters([Konva.Filters.Grayscale]);
         layer.add(reconstructed_img);
+        mag_rect.moveToTop();
+        phase_rect.moveToTop();
+       var transforms1 = new Konva.Transformer({
+          nodes: [mag_rect],
+        });
+        transforms1.rotateEnabled(false);
+        var transforms2 = new Konva.Transformer({
+          nodes: [phase_rect],
+       
+      
+        }); 
+        transforms2.rotateEnabled(false);
+        layer.add(transforms2);
+        layer.add(transforms1);
        
       }; img5.src='data:image/jpeg;base64,'+image;
 
@@ -479,27 +592,27 @@ var coordinates = JSON.stringify(coordinates);
 //////// UPDATING COORDINATES, WIDTH AND HEIGHT: 
 
       
-    function update_mag_Text() {
-        var lines = [
-          'Mag_rectangle_x: ' + mag_rect.x() ,
-          'Mag_rectangle_y: ' + mag_rect.y() ,
-          'Mag_rectangle_width: ' + Math.abs(mag_rect.scaleX()*mag_rect.width()) ,
-          'Mag_rectangle_height: ' +Math.abs(mag_rect.scaleY()* mag_rect.height()) ,
-        ];
-        text.text(lines.join('\n'));
+    // function update_mag_Text() {
+    //     var lines = [
+    //       'Mag_rectangle_x: ' + mag_rect.x() ,
+    //       'Mag_rectangle_y: ' + mag_rect.y() ,
+    //       'Mag_rectangle_width: ' + Math.abs(mag_rect.scaleX()*mag_rect.width()) ,
+    //       'Mag_rectangle_height: ' +Math.abs(mag_rect.scaleY()* mag_rect.height()) ,
+    //     ];
+    //     text.text(lines.join('\n'));
       
-      }  
+    //   }  
       
      
-      function update_phase_Text() {
-        var lines = [
-      'Phase_rectangle_x: ' + phase_rect.x(),
-      'Phase_rectangle_y: ' + phase_rect.y(),
-       'phase_rectangle_width: ' +Math.abs(phase_rect.scaleX()* phase_rect.width()),
-       'phase_rectangle_height: ' + Math.abs(phase_rect.scaleY()*phase_rect.height()),
-          ];
-        text2.text(lines.join('\n'));
-      }    
+    //   function update_phase_Text() {
+    //     var lines = [
+    //   'Phase_rectangle_x: ' + phase_rect.x(),
+    //   'Phase_rectangle_y: ' + phase_rect.y(),
+    //    'phase_rectangle_width: ' +Math.abs(phase_rect.scaleX()* phase_rect.width()),
+    //    'phase_rectangle_height: ' + Math.abs(phase_rect.scaleY()*phase_rect.height()),
+    //       ];
+    //     text2.text(lines.join('\n'));
+    //   }    
     
       </script>
   </body>
