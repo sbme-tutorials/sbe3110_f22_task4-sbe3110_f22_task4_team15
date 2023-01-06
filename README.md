@@ -14,7 +14,7 @@
 
 ![Screenshot (146)](https://user-images.githubusercontent.com/93436199/211054404-bf99fb45-69bc-4e01-865c-5ab8b222de9f.png)
 
- - The inverse selection check box selects the area outside the selection triangle ***(if a high pass filter is needed)***:
+ - The inverse selection check box selects the area outside the selection rectangle ***(High pass filter )***:
  
 
 ![Screenshot (147)](https://user-images.githubusercontent.com/93436199/211054392-4699182c-27c8-4267-89ef-e17d96c41a65.png)
