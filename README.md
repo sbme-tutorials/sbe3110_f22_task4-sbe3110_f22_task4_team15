@@ -8,8 +8,8 @@
 ![Screenshot (133)](https://user-images.githubusercontent.com/93436199/211045812-6b2ddd91-8e1e-422e-8090-ad2a967c1fa0.png)
 #
  
- - Start selecting any wanted part from the magnitude spectrums ***(after clicking the `select magnitude` button)*** 
- and selecting any wanted part from the Phase spectrums ***(after clicking the `select phase` button)***.
+ - Start selecting any wanted part from the magnitude spectrums ***(after clicking the `Select Magnitude` button)*** 
+ and selecting any wanted part from the Phase spectrums ***(after clicking the `Select Phase` button)***.
  - click ***`Combine`*** and the ***Reconstructed image*** will be displayed:
  #
 
