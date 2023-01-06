@@ -1,5 +1,5 @@
 # Team15_task4
-## Task overview:
+## Task Overview:
 - The user can upload one or two images.
 
 
